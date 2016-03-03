@@ -2,8 +2,8 @@
 
 class MainController {
 
-    constructor($resource) {
-        this.$resource = $resource;
+    constructor($http) {
+        this.$http = $http;
 
         this.now = moment();
 
@@ -28,9 +28,8 @@ class MainController {
             entries: []
         };
 
-        this.$resource('day').get({date: this.currentDay.date}).$promise.then(dayFromServer => {
-            this.currentDay.id = dayFromServer.id;
-            this.currentDay.entries = dayFromServer.entries || [];
+        this.$http.get('list').then(response => {
+            this.lists = response.data;
         });
     }
 

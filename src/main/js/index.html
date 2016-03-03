@@ -4,45 +4,19 @@
     <link href="bootstrap-theme.min.css" rel="stylesheet">
 </head>
 <body>
-<div class="container" ng-app="mainApp">
-    <div class="row" ng-controller="MainController as vm">
-        <div>
-            <div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        {{vm.currentDay.name}} - {{vm.currentDay.date}} - ID: {{vm.currentDay.id}} <span
-                            ng-show="false">[TODAY]</span>
-                    </div>
-
-                    <div class="panel-body">
-                        <div>Total: {{vm.sum(vm.currentDay.entries)}}</div>
-                        <div ng-repeat="entry in vm.currentDay.entries">
-                            <form>
-                                <input type="text" ng-model="entry.start" ng-disabled="vm.currentDay.running">-<input
-                                    type="text"
-                                    ng-model="entry.stop"
-                                    ng-disabled="vm.currentDay.running">
-                                <a href="" ng-click="vm.deleteEntry(vm.currentDay,$index)">X</a>
-                            </form>
-                        </div>
-                        <div>
-                            <button class="btn btn-success" ng-if="!vm.currentDay.running" ng-click="vm.start(vm.currentDay)">Start</button>
-                            <button class="btn btn-danger" ng-if="vm.currentDay.running" ng-click="vm.stop(vm.currentDay)">Stop</button>
-                            <button class="btn btn-primary" ng-click="vm.save(vm.currentDay)">Save</button>
-                        </div>
-                    </div>
+    <div ng-app="mainApp">
+        <div ng-controller="MainController as vm">
+            <div ng-repeat="list in vm.lists">
+                <h1>List</h1>
+                <div ng-repeat="item in list.items" ng-click="item.done = !item.done">
+                    {{item}}
                 </div>
             </div>
         </div>
-        <div>
-            <button ng-click="vm.prev()">Prev</button>
-            <button ng-click="vm.next()">Next</button>
-        </div>
     </div>
-</div>
 </body>
 <script src="angular.min.js"></script>
 <script src="angular-resource.min.js"></script>
 <script src="moment.js"></script>
-<script src="timecard.js"></script>
+<script src="shopping.js"></script>
 </html>

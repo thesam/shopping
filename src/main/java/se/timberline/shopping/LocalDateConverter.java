@@ -1,4 +1,4 @@
-package se.timberline.timecard;
+package se.timberline.shopping;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

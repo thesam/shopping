@@ -1,7 +1,7 @@
 {
-  "name": "timecard",
+  "name": "shopping",
   "version": "0.0.0",
-  "description": "Timecard GUI",
+  "description": "Shopping list GUI",
   "private": true,
   "dependencies": {
     "moment": "^2.10.6"

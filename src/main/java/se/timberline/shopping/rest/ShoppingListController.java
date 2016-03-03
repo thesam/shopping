@@ -1,4 +1,4 @@
-package se.timberline.timecard.rest;
+package se.timberline.shopping.rest;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,38 +8,36 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import se.timberline.timecard.model.Day;
-import se.timberline.timecard.model.DayRepository;
-
-import java.time.LocalDate;
+import se.timberline.shopping.model.ShoppingList;
+import se.timberline.shopping.model.ShoppingListRepository;
 
 @RestController
-@RequestMapping("/day")
-public class DayController {
+@RequestMapping("/list")
+public class ShoppingListController {
 
-    private Logger logger = Logger.getLogger(DayController.class);
+    private Logger logger = Logger.getLogger(ShoppingListController.class);
 
     @Autowired
-    private DayRepository dayRepository;
+    private ShoppingListRepository shoppingListRepository;
 
     @RequestMapping(method = RequestMethod.GET)
-    public Day findByDate(@RequestParam String date) {
-        return dayRepository.findByDate(LocalDate.parse(date));
+    public Iterable<ShoppingList> findAll() {
+        return shoppingListRepository.findAll();
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Day save(@RequestBody Day day) {
-        if (day.id() != null) {
-            Day savedDay = dayRepository.findOne(day.id());
-            savedDay.update(day);
-            dayRepository.save(savedDay);
-            return savedDay;
-        } else {
-            return dayRepository.save(day);
-        }
+    public ShoppingList save(@RequestBody ShoppingList shoppingList) {
+        return shoppingList;
+//        if (day.id() != null) {
+//            ShoppingList savedDay = dayRepository.findOne(day.id());
+//            savedDay.update(day);
+//            dayRepository.save(savedDay);
+//            return savedDay;
+//        } else {
+//            return dayRepository.save(day);
+//        }
     }
 
     @ExceptionHandler
